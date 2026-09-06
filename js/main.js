@@ -87,13 +87,13 @@ function trackTelegramClick() {
       content_name: "MMA Kids Telegram CTA",
     });
 
+    fbq("track", "Lead", {
+      content_name: "MMA Kids Telegram CTA",
+    });
+
     fbq("trackCustom", "TelegramClick", {
       source: "landing_page",
     });
-
-    // Do NOT fire Lead here.
-    // A real Lead should be sent later via Meta Conversions API
-    // after the user completes the application in Telegram.
   } catch (error) {
     console.debug("Meta Pixel tracking failed", error);
   }
