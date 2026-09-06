@@ -17,12 +17,19 @@ function getMetaPixelId() {
   return getConfig().META_PIXEL_ID || "YOUR_META_PIXEL_ID";
 }
 
-function isPixelConfigured() {
-  const id = getMetaPixelId();
-  return Boolean(id) && id !== "YOUR_META_PIXEL_ID";
-}
-
 const TRAFFIC_STORAGE_KEY = "mma_traffic_source";
+const TRAFFIC_PARAMS = [
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_content",
+  "utm_term",
+  "fbclid",
+];
+
+/* --------------------------------------------
+   Traffic source capture & sessionStorage
+--------------------------------------------- */
 function saveTrafficSource() {
   try {
     const params = new URLSearchParams(window.location.search);
@@ -212,7 +219,6 @@ function setupStickyCTA() {
    Init
 --------------------------------------------- */
 function init() {
-  initMetaPixel();
   saveTrafficSource();
   setupTelegramLinks();
   setupScrollAnimations();

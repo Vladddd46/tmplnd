@@ -36,7 +36,8 @@ Pricing is intentionally **not** shown anywhere on the site.
   css/
     style.css         # All styles
   js/
-    main.js           # Telegram CTA, Pixel, UTM, sticky CTA, animations
+    config.js         # Telegram URL + Meta Pixel ID (edit this)
+    main.js           # Telegram CTA, Pixel events, UTM, sticky CTA, animations
   assets/
     images/           # Local WebP images (see below)
   README.md
@@ -84,44 +85,36 @@ Update canonical / Open Graph URLs to match (see sections 14–16).
 
 ---
 
-## 5. Replace `YOUR_BOT_USERNAME`
+## 5. Configuration (`js/config.js`)
 
-In `js/main.js`:
+**Edit only `js/config.js` before publishing.**
 
 ```js
-const TELEGRAM_BOT_URL =
-  "https://t.me/YOUR_BOT_USERNAME?start=mma_meta";
+window.SITE_CONFIG = {
+  TELEGRAM_BOT_URL: "https://t.me/YOUR_BOT_USERNAME?start=mma_meta",
+  META_PIXEL_ID: "YOUR_META_PIXEL_ID",
+};
 ```
 
-Change `YOUR_BOT_USERNAME` to your real bot username (without `@`).
+### Telegram
 
-All `.telegram-cta` links are assigned this URL in JavaScript. HTML fallbacks use the same placeholder until JS runs.
+Set `TELEGRAM_BOT_URL` to your full bot link, for example:
 
----
+`https://t.me/mma_kids_bot?start=mma_meta`
 
-## 6. Replace `YOUR_META_PIXEL_ID`
+All `.telegram-cta` buttons get this URL from JavaScript.
+
+### Meta Pixel
 
 **Replace `YOUR_META_PIXEL_ID` before production deployment.**
 
-There are two places:
-
-1. **`index.html`** — Meta Pixel base code:
-
-```js
-var META_PIXEL_ID = 'YOUR_META_PIXEL_ID';
-```
-
-2. **`js/main.js`** — constant used for debug logging:
-
-```js
-const META_PIXEL_ID = "YOUR_META_PIXEL_ID";
-```
+Set `META_PIXEL_ID` to your real Pixel ID (digits only).
 
 If the placeholder is not replaced:
 
 - The site still works
-- Pixel `init` / `PageView` are skipped (no broken requests with a fake ID)
-- Telegram CTA click handlers still run safely with `typeof fbq === 'function'` checks
+- Pixel `init` / `PageView` are skipped
+- Telegram CTA click handlers still run safely
 
 ---
 
@@ -314,8 +307,8 @@ That keeps ad optimization aligned with qualified leads, not button clicks.
 
 Replace / update these before going live:
 
-- [ ] `YOUR_BOT_USERNAME` in `js/main.js` (and HTML fallbacks will be overwritten by JS)
-- [ ] `YOUR_META_PIXEL_ID` in `index.html` and `js/main.js`
+- [ ] `TELEGRAM_BOT_URL` in `js/config.js`
+- [ ] `META_PIXEL_ID` in `js/config.js`
 - [ ] Canonical URL in `index.html` and `privacy.html`
 - [ ] `og:url` in `index.html`
 - [ ] Absolute `og:image` / `twitter:image` URLs
