@@ -83,11 +83,8 @@ function trackTelegramClick() {
   }
 
   try {
+    // Contact = click to Telegram. Lead is only from bot CAPI after age + phone.
     fbq("track", "Contact", {
-      content_name: "MMA Kids Telegram CTA",
-    });
-
-    fbq("track", "Lead", {
       content_name: "MMA Kids Telegram CTA",
     });
 

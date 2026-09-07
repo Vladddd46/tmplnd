@@ -173,7 +173,7 @@ Telegram CTA clicked { trafficSource: ..., ... }
 2. Deploy or serve over `http://localhost` / HTTPS.
 3. Open the page — `PageView` should fire on load.
 4. Click a Telegram CTA — `Contact` and custom `TelegramClick` should fire.
-5. Confirm **Lead** fires on Telegram click.
+5. Do **not** expect `Lead` on the landing click — `Lead` comes from the bot CAPI after age + phone.
 
 ---
 
@@ -192,7 +192,7 @@ Telegram CTA clicked { trafficSource: ..., ... }
 2. Enter your landing page URL (or use the browser extension test flow).
 3. Load the page → confirm `PageView`.
 4. Click Telegram CTA → confirm `Contact` and `TelegramClick`.
-5. Confirm `Lead` event fires from the landing page click.
+5. Complete the bot flow (age + phone) → confirm server-side `Lead` via CAPI (Test Events / bot logs).
 
 ---
 
@@ -281,29 +281,24 @@ Missing values are ignored. On Telegram CTA click, attribution is logged via `co
 
 ---
 
-## 18. Lead on Telegram CTA click
+## 18. Contact on Telegram CTA click
 
-For a quick ad launch, the landing page fires `Lead` when the user clicks a Telegram CTA
-(together with `Contact` and custom `TelegramClick`).
-
-Events on Telegram CTA:
+On Telegram CTA click the landing fires:
 
 - `Contact`
-- `Lead`
 - custom `TelegramClick`
 
-Later you can move the real `Lead` to the bot via Meta Conversions API after the user
-completes the application, and keep only `Contact` on the button click.
+`Lead` is **not** sent from the landing. The qualified `Lead` is sent only from the
+Telegram bot via Meta Conversions API after child age + valid phone.
 
 ---
 
-## 19. Future: Lead via Meta Conversions API
+## 19. Lead via Meta Conversions API
 
-After the user completes the application inside the Telegram bot, a backend can send a
-qualified `Lead` event through the **Meta Conversions API**, with proper event ID /
-deduplication as needed.
+After the user completes the application inside the Telegram bot, the backend sends a
+qualified `Lead` event through the **Meta Conversions API**.
 
-That keeps ad optimization aligned with completed applications, not only button clicks.
+That keeps ad optimization aligned with completed applications, not button clicks.
 
 ---
 
