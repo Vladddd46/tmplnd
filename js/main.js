@@ -83,12 +83,8 @@ function trackTelegramClick() {
   }
 
   try {
-    fbq("track", "Lead", {
+    fbq("track", "Contact", {
       content_name: "MMA Kids Telegram CTA",
-    });
-
-    fbq("trackCustom", "TelegramClick", {
-      source: "landing_page",
     });
   } catch (error) {
     console.debug("Meta Pixel tracking failed", error);

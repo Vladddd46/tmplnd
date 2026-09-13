@@ -172,7 +172,7 @@ Telegram CTA clicked { trafficSource: ..., ... }
 1. Replace `YOUR_META_PIXEL_ID` with a real Pixel ID.
 2. Deploy or serve over `http://localhost` / HTTPS.
 3. Open the page — `PageView` should fire on load.
-4. Click a Telegram CTA — `Lead` and custom `TelegramClick` should fire.
+4. Click a Telegram CTA — `Contact` should fire.
 
 ---
 
@@ -181,7 +181,7 @@ Telegram CTA clicked { trafficSource: ..., ... }
 1. Install the [Meta Pixel Helper](https://chrome.google.com/webstore/detail/meta-pixel-helper/fdgfkebogiimcoedlicjlajpkdmockpc) Chrome extension.
 2. Open the live or local landing page.
 3. Check that `PageView` appears on load.
-4. Click a CTA and verify `Lead` + `TelegramClick`.
+4. Click a CTA and verify `Contact`.
 
 ---
 
@@ -190,7 +190,7 @@ Telegram CTA clicked { trafficSource: ..., ... }
 1. Open Meta Events Manager → your Pixel → **Test Events**.
 2. Enter your landing page URL (or use the browser extension test flow).
 3. Load the page → confirm `PageView`.
-4. Click Telegram CTA → confirm `Lead` and `TelegramClick`.
+4. Click Telegram CTA → confirm `Contact`.
 
 ---
 
@@ -279,14 +279,11 @@ Missing values are ignored. On Telegram CTA click, attribution is logged via `co
 
 ---
 
-## 18. Lead on Telegram CTA click
+## 18. Contact on Telegram CTA click
 
-On Telegram CTA click the landing fires:
+On Telegram CTA click the landing fires `Contact`.
 
-- `Lead`
-- custom `TelegramClick`
-
-The Telegram bot only collects and delivers the application; it does not send Meta events.
+`Lead` is sent only from the Telegram bot via Meta CAPI after a completed application.
 
 ---
 
